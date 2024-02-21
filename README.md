@@ -1,11 +1,8 @@
-#Multiple event identification and characterization by retrospective analysis of
-structured data streams
+# Multiple event identification and characterization by retrospective analysis of structured data streams
 
-AKA
+## AKA Post-processing some sensor data to see what happened
 
-Post-processing some sensor data to see what happened
-
-##Section 1
+### Section 1
 
 Assumptions:
 
@@ -34,6 +31,8 @@ Section 3: System Model, MEIC formulation, closed form solutions (MATH HEAVY)
 Section 4: Simulation Study
 Section 5: Case study
 Sectoin 6: Conclusions
+
+### Section 2
 
 
 
