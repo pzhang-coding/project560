@@ -45,3 +45,37 @@ The MEIC algorithm identifies events, then it estimates the signature of the eve
 The MEIC algorithm here uses the Dictionary Learning Technique developed in Lee (2007) (NOTE: READ THIS ONE). This method "identifies events and describes their effect by directly formulating an optimization criterion." See Yan: 2017,2018 and Mou: 2021.
 
 ### Section 3 - The MEIC Method
+
+Based on covariance matrix analysis. Some matrix of time-domain data S, where each column of S are the time-domain samples from a different sensor, is analyzed. Authors also consider Principle Component Analysis as a different method for, presumably, constructing some data matrix that has more identifiable features?
+
+Note that the covariance of matrix S when no "event" (AKA signal energy) etc is the Identity matrix with the variance values for each row/column pair along the diagonal. This is because white noise is uncorrelated with itself, of course. The assumption is that events are correlated between the sensors. 
+
+They use a wavelet representation for signals in this paper. I actually don't know much about wavelets so this could be cool.
+
+SYSTEM MODEL (function of time t):
+X = HBY
+X -> Sensor Measurements
+H -> "Collcetion of all basis"
+B -> Event signatures (wavelet coefficients)
+Y -> Event strengths
+
+Optimize to solve for B and Y. 
+
+Regularization,Lasso Penalty, Smoothing penalty all used in forming the optimization problem. Lots of assumptions made about the specific problem-space of industrial processing/manufacturing. Mainly that events are not discrete, but rather have long tails that persist throughout the process. Lot's of these details are domain specific. 
+
+Also normalize using the Frobenius Norm. Classic Cauchy-Schwarz.
+
+#### Section 3.2: The actual ML-based solutions algorithm: MEIC
+
+The Problem is broken down in to 4 problems:
+(1) Dictionary learning problem. Solved using Blockwise Coordinate Descent via Alternative-Direction Method of Multipliers. This sets out to iteratively update B and Y until they converge to a value. THIS IS NOT A CONVEX SPACE. SO INITIALIZATION PLAYS A LARGE ROLE. Only converges to local optima.
+
+(2) Updating B. An optimization problem is presented, minimizing the Frobenius Norm Squared of ||X-HBY|| (plus the penalty factors). This is solved using the ADMM Consensus algorithm.
+
+(3,4) These problems take the same form. Another optimization using Algorithm 2, the ADMM consensus algorithm. 
+
+This is low-key hard to follow, but the bottom line is that a variety of ML optimization algorithms are used in tandem to optimize the problem briefly described in these notes. 
+
+### Section 4 and onwards
+
+Lots of details about simulations and demonstrations of the procedure. Pretty neat visual representations of various event signatures (output of the above Aglos). Cool stuff.
