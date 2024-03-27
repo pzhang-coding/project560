@@ -1,0 +1,13 @@
+Brief Note for literature review on March 27
+Based on "Multiple event identification and characterization by retrospective analysis of structured data streams" Wang 2022
+1.Pattern changes in received signal from sensor may imply the event happening.(In paper intro, these patterns refer to event signature)
+Two step for this method brought up…
+<1>Find out the characterization of each event and find out the correlation(maybe) with each signal segment.
+<2>Determine the period of each event happening and estimate the strengths of event(what kind of effect this takes on signal changes)
+
+2.Algo level(MEIC):
+Intro:Can simultaneously identify the event period and characterize the element inside the signal(event happening)
+Goal:Through solving optimization problem, we can extract the useful representation from sensing signals and extract the most relevant part that accord with events detection.
+Potential Issue:How we can model this optimization problem?Include mathematical modeling.
+Procedure in paper:
+<1> Use k-mean clustering method to form the dictionary of event signatures, and then create an L1 penalization to determine the offset of the event within signal.(In this case we need to use historical data to create the comprehensive dictionary set. )
